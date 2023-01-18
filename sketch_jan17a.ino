@@ -8,6 +8,8 @@ void setup() {
     pinMode(9, OUTPUT);
     pinMode(8, OUTPUT);
     pinMode(13, OUTPUT);
+    Serial.begin(9600);
+    Serial.println("Hello World");
 }
 
 void loop() {
@@ -31,5 +33,5 @@ for(int j = 12; j >= 8; j--){
   digitalWrite(j, LOW);
 }
 delay(1000);
-
+//hello
 }
