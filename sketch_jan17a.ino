@@ -10,7 +10,7 @@ void setup() {
     pinMode(9, OUTPUT);
     pinMode(8, OUTPUT);
     pinMode(13, OUTPUT);
-    Serial.begin(9600);
+    Serial.begin(19200);
     Serial.println("Hello World");
     //initialize the button
     pinMode(2, INPUT);
@@ -20,8 +20,10 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 buttonState = digitalRead(2);
+//Serial.println(buttonState);
 
 if(buttonState == HIGH){
+Serial.println("ON");
 
 
 digitalWrite(8, HIGH);
@@ -30,8 +32,8 @@ delay(1000);
 digitalWrite(8, LOW);
 digitalWrite(12, LOW);
 
-delay(3000);
-for(int i = 8; i <= 12; i += 2){    //i = i + 2
+//delay(3000);
+for(int i = 8; i <= 12; i++){    //i = i + 2 or i += 2
   digitalWrite(i, HIGH);
   delay(250);
   digitalWrite(i, LOW);
@@ -41,7 +43,11 @@ for(int j = 12; j >= 8; j--){
   delay(250);
   digitalWrite(j, LOW);
 }
-delay(1000);
+//delay(1000);
 //hello
+//end of if
 }
+
+//end of loop
 }
+
