@@ -1,5 +1,7 @@
 
 
+int buttonState = 0;
+
 void setup() {
   // put your setup code here, to run once:
     pinMode(12, OUTPUT);
@@ -10,10 +12,17 @@ void setup() {
     pinMode(13, OUTPUT);
     Serial.begin(9600);
     Serial.println("Hello World");
+    //initialize the button
+    pinMode(2, INPUT);
+
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+buttonState = digitalRead(2);
+
+if(buttonState == HIGH){
+
 
 digitalWrite(8, HIGH);
 digitalWrite(12, HIGH);
@@ -34,4 +43,5 @@ for(int j = 12; j >= 8; j--){
 }
 delay(1000);
 //hello
+}
 }
