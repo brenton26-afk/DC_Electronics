@@ -7,9 +7,9 @@ bool pressedB4 = false;
 void setup() {
   // put your setup code here, to run once:
     
-    //pinMode(,OUTPUT);
-   // pinMode(,OUTPUT);
-    //pinMode(,OUTPUT);
+    pinMode(7,OUTPUT);
+    pinMode(6,OUTPUT);
+    pinMode(5,OUTPUT);
     
     pinMode(12, OUTPUT);
     pinMode(11, OUTPUT);
