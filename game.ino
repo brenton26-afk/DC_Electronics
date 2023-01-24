@@ -2,6 +2,8 @@
 int button = 0;
 int score = 0;
 
+bool pressedB4 = false;
+
 void setup() {
   // put your setup code here, to run once:
     
@@ -23,8 +25,18 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   button = digitalRead(2);
+  
   if(button == HIGH){
-    Serial.println("ON1");
-    //button = 0;
+    if(pressedB4 == false){
+      Serial.println("ON1");
+      pressedB4 = true;
+      score++;
+      Serial.println(score);
+    }
   }
+  
+  if(button == LOW){
+    pressedB4 = false;
+  }
+  
 }
