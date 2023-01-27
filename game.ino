@@ -51,8 +51,8 @@ void loop() {
   
 // reset the score and the time when the time is up 
 if(theTime == 0){
-  //score = 0;
-  //theTime = 6;
+  score = 0;
+  theTime = 6;
   Serial.println("All done: ");
   Serial.println(score);
 }
