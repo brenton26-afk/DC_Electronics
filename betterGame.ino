@@ -1,11 +1,15 @@
 int button = 0;
 int score = 0;
-int theTime = 3;
+
 
 long startTime;
 
 bool pressed = false;
 bool game = false;
+
+bool seven = true;
+bool six = true;
+bool four = true;
 
 void setup(){
   pinMode(12, OUTPUT);
@@ -39,41 +43,48 @@ void loop(){
     pressed = false;
   }
 
-  digitalWrite(7, HIGH);
-  digitalWrite(6, HIGH);
-  digitalWrite(4, HIGH);
+	if(seven == true)
+		{digitalWrite(7, HIGH);}
+  if(six == true)
+		{digitalWrite(6, HIGH);}
+	if(four == true)
+		{digitalWrite(4, HIGH);}
 
     
    if(millis() - startTime >= 3000 && game == true){
      digitalWrite(7, LOW);
+		 seven = false;
    }
 
    if(millis() - startTime >= 4000 && game == true){
-    digitalWrite(6, LOW);
+     digitalWrite(6, LOW);
+		 six = false;
    }
 
    if(millis() - startTime >= 5000 && game == true){
-    digitalWrite(4,LOW);
+     digitalWrite(4,LOW);
+		 four = false;
    }
 
-    if(score >= 5){
-  digitalWrite(8, HIGH);
+	//turn on game lights as the score goes up
+   if(score >= 5){
+  	 digitalWrite(8, HIGH);
   }
   
-if(score >= 10){
-  digitalWrite(9, HIGH);
+	 if(score >= 10){
+  	 digitalWrite(9, HIGH);
   }
   
-if(score >= 15){
-  digitalWrite(10, HIGH);
+	 if(score >= 15){
+  	 digitalWrite(10, HIGH);
   }
   
-if(score >= 20){
-  digitalWrite(11, HIGH);
+	 if(score >= 20){
+  	 digitalWrite(11, HIGH);
   }
   
-if(score >= 25){
-  digitalWrite(12, HIGH);
+	 if(score >= 25){
+  	 digitalWrite(12, HIGH);
   }
 
 
