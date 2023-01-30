@@ -2,6 +2,7 @@ int button = 0;
 int score = 0;
 
 
+
 long startTime;
 
 bool pressed = false;
@@ -36,6 +37,9 @@ void loop(){
       if(score == 1){
         startTime = millis();
         game = true;
+        seven = true;
+        six = true;
+        four = true;
         Serial.println(startTime);
         }
   
@@ -43,50 +47,64 @@ void loop(){
     pressed = false;
   }
 
-	if(seven == true)
-		{digitalWrite(7, HIGH);}
+  if(seven == true)
+    {digitalWrite(7, HIGH);}
   if(six == true)
-		{digitalWrite(6, HIGH);}
-	if(four == true)
-		{digitalWrite(4, HIGH);}
+    {digitalWrite(6, HIGH);}
+  if(four == true)
+    {digitalWrite(4, HIGH);}
 
     
-   if(millis() - startTime >= 3000 && game == true){
+   if(millis() - startTime >= 1000 && game == true){
      digitalWrite(7, LOW);
-		 seven = false;
+     seven = false;
    }
 
-   if(millis() - startTime >= 4000 && game == true){
+   if(millis() - startTime >= 2000 && game == true){
      digitalWrite(6, LOW);
-		 six = false;
+     six = false;
    }
 
-   if(millis() - startTime >= 5000 && game == true){
+   if(millis() - startTime >= 3000 && game == true){
      digitalWrite(4,LOW);
-		 four = false;
+     four = false;
+     game = false;
    }
 
-	//turn on game lights as the score goes up
+  //turn on game lights as the score goes up
    if(score >= 5){
-  	 digitalWrite(8, HIGH);
+     digitalWrite(8, HIGH);
+  }else{
+    digitalWrite(8,LOW);
   }
   
-	 if(score >= 10){
-  	 digitalWrite(9, HIGH);
+   if(score >= 10){
+     digitalWrite(9, HIGH);
+  }else{
+    digitalWrite(9, LOW);
   }
   
-	 if(score >= 15){
-  	 digitalWrite(10, HIGH);
+   if(score >= 15){
+     digitalWrite(10, HIGH);
+  }else{
+    digitalWrite(10, LOW);
   }
   
-	 if(score >= 20){
-  	 digitalWrite(11, HIGH);
+   if(score >= 20){
+     digitalWrite(11, HIGH);
+  }else{
+    digitalWrite(11, LOW);
   }
   
-	 if(score >= 25){
-  	 digitalWrite(12, HIGH);
+   if(score >= 25){
+     digitalWrite(12, HIGH);
+  }else{
+    digitalWrite(12, LOW);
   }
-
+  
+    if(game == false){
+      score = 0;
+    }
 
 
 }
