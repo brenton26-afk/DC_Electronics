@@ -25,7 +25,7 @@ void loop() {
  
   distance = duration * 0.034 / 2;
 
-  int sensorValue = map(distance, 0, 70, 0, 255);
+  int sensorValue = map(distance, 0, 150, 0, 255);
   Serial.print("Light: ");
   Serial.println(sensorValue);
 
@@ -34,5 +34,5 @@ void loop() {
   
   Serial.print("Distance: ");
   Serial.println(distance);
-  //delay(500);
+  delay(30);
 }
