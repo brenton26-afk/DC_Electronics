@@ -33,5 +33,6 @@ void loop() {
       i = 0;
     }
     lcd.clear();
+    //how to move the img
   
   }
