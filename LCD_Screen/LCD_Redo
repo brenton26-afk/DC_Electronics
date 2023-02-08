@@ -23,16 +23,31 @@ void setup() {
 void loop() {
 
   //for(int i = 0; i < 16; i++){}
-    lcd.setCursor(0, 5);
+    
+    lcd.setCursor(0, 0);
+    //lcd.print("Hello World!");
+    //lcd.setCursor(8, 1);
+    //lcd.print("Hello Again!");
+    
     lcd.createChar(7, customChar);
+    //what does lcd.home do?
+    // is it necessary to print the characters or other things
+    
     lcd.home();
+    
     lcd.write(8);
+    //lcd.write(byte(0));
     delay(500);
+    
+    //to move the characters around:
     i = i + 1;
     if(i >= 16){
       i = 0;
     }
-    lcd.clear();
+    
+    // find out what lcd clear does to the display.
+    //---> figure out how to clear the screen of all the text
+    //lcd.clear();
     //how to move the img
   
   }
