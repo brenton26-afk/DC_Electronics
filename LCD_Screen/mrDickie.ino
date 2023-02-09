@@ -24,7 +24,7 @@ byte top1[] = {
   B11111
 };
 
-byte top2[] = {
+byte top2[2] = {
   B00000,
   B01110,
   B01000,
@@ -35,7 +35,7 @@ byte top2[] = {
   B10001
 };
 
-byte top3[] = {
+byte top3[3] = {
   B00000,
   B00100,
   B01100,
@@ -46,7 +46,7 @@ byte top3[] = {
   B00100
 };
 
-byte bottom1[] = {
+byte bottom1[4] = {
   B11111,
   B11110,
   B11110,
@@ -57,7 +57,7 @@ byte bottom1[] = {
   B00000
 };
 
-byte bottom2[] = {
+byte bottom2[5] = {
   B10001,
   B00111,
   B01101,
@@ -68,7 +68,7 @@ byte bottom2[] = {
   B00000
 };
 
-byte bottom3[] = {
+byte bottom3[6] = {
   B00100,
   B00100,
   B00101,
@@ -80,28 +80,35 @@ byte bottom3[] = {
 };
 
 void setup(){
-  lcd.begin(16, 2)
+  lcd.begin(16, 2);
   //could make 2,2 just for one image
 }
 
 void loop(){
   //3 by 2
   lcd.setCursor(0, 0);
-  lcd.createChar(0, top1);
+  lcd.createChar(1, top1);
+  lcd.write(1);
   
-  //lcd.setCursor(1, 0);
-  lcd.createChar(1, top2);
+  lcd.setCursor(1, 0);
+  lcd.createChar(2, top2);
+  lcd.write(1);
   
-  //lcd.setCursor(2, 0);
-  lcd.createChar(2, top3);
+  lcd.setCursor(2, 0);
+  lcd.createChar(3, top3);
+  lcd.write(2);
   
-  //lcd.setCursor(0, 1);
-  lcd.createChar(3, bottom1);
+  lcd.setCursor(0, 1);
+  lcd.createChar(4, bottom1);
+  lcd.write(8);
   
-  //lcd.setCursor(1, 1);
-  lcd.createChar(4, bottom2);
+  lcd.setCursor(1, 1);
+  lcd.createChar(5, bottom2);
+  lcd.write(4);
   
-  //lcd.setCursor(2, 1);
-  lcd.createChar(5, bottom3);
+  lcd.setCursor(2, 1);
+  lcd.createChar(6, bottom3);
+  lcd.write(5);
 
+  delay(1000);
 }
