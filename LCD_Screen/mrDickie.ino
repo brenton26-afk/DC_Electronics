@@ -13,6 +13,72 @@ byte miniDickie[] = {
   B10101
 };
 
+byte top1[] = {
+  B00000,
+  B00000,
+  B00010,
+  B00110,
+  B01110,
+  B11110,
+  B11110,
+  B11111
+};
+
+byte top2[] = {
+  B00000,
+  B01110,
+  B01000,
+  B01001,
+  B11001,
+  B01101,
+  B00111,
+  B10001
+};
+
+byte top3[] = {
+  B00000,
+  B00100,
+  B01100,
+  B00100,
+  B00100,
+  B00100,
+  B00100,
+  B00100
+};
+
+byte bottom1[] = {
+  B11111,
+  B11110,
+  B11110,
+  B01110,
+  B00110,
+  B00010,
+  B00000,
+  B00000
+};
+
+byte bottom2[] = {
+  B10001,
+  B00111,
+  B01101,
+  B11001,
+  B01001,
+  B01000,
+  B01110,
+  B00000
+};
+
+byte bottom3[] = {
+  B00100,
+  B00100,
+  B00101,
+  B00101,
+  B00101,
+  B01101,
+  B00100,
+  B00000
+};
+
 void setup(){
   lcd.begin(16, 2)
   //could make 2,2 just for one image
@@ -20,5 +86,22 @@ void setup(){
 
 void loop(){
   //3 by 2
-  lcd.setCursor(0,0);
+  lcd.setCursor(0, 0);
+  lcd.createChar(0, top1);
+  
+  //lcd.setCursor(1, 0);
+  lcd.createChar(1, top2);
+  
+  //lcd.setCursor(2, 0);
+  lcd.createChar(2, top3);
+  
+  //lcd.setCursor(0, 1);
+  lcd.createChar(3, bottom1);
+  
+  //lcd.setCursor(1, 1);
+  lcd.createChar(4, bottom2);
+  
+  //lcd.setCursor(2, 1);
+  lcd.createChar(5, bottom3);
+
 }
