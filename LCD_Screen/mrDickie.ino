@@ -13,7 +13,7 @@ byte miniDickie[] = {
   B10101
 };
 
-byte top1[] = {
+byte top1[8] = {
   B00000,
   B00000,
   B00010,
@@ -24,10 +24,10 @@ byte top1[] = {
   B11111
 };
 
-byte top2[2] = {
-  B00000,
-  B01110,
-  B01000,
+byte top2[8] = {
+  B00001,
+  B01111,
+  B01001,
   B01001,
   B11001,
   B01101,
@@ -35,18 +35,18 @@ byte top2[2] = {
   B10001
 };
 
-byte top3[3] = {
+byte top3[8] = {
   B00000,
   B00100,
-  B01100,
-  B00100,
-  B00100,
-  B00100,
+  B01101,
+  B00101,
+  B00101,
+  B00101,
   B00100,
   B00100
 };
 
-byte bottom1[4] = {
+byte bottom1[8] = {
   B11111,
   B11110,
   B11110,
@@ -57,18 +57,18 @@ byte bottom1[4] = {
   B00000
 };
 
-byte bottom2[5] = {
+byte bottom2[8] = {
   B10001,
   B00111,
   B01101,
   B11001,
   B01001,
-  B01000,
-  B01110,
-  B00000
+  B01001,
+  B01111,
+  B00001
 };
 
-byte bottom3[6] = {
+byte bottom3[8] = {
   B00100,
   B00100,
   B00101,
@@ -80,35 +80,28 @@ byte bottom3[6] = {
 };
 
 void setup(){
+  
   lcd.begin(16, 2);
-  //could make 2,2 just for one image
+  //could make 3,2 just for one image
+  lcd.createChar(1, top1);
+  lcd.createChar(2, top2);
+  lcd.createChar(3, top3);
+  lcd.createChar(4, bottom1);
+  lcd.createChar(5, bottom2);
+  lcd.createChar(6, bottom3);
+  
+  lcd.setCursor(0, 0);
+  
+  lcd.home();
+  lcd.write(byte(1));
+  lcd.write(byte(2));
+  lcd.write(byte(3));
+  lcd.setCursor(0,1);
+  lcd.write(byte(4));
+  lcd.write(byte(5));
+  lcd.write(byte(6));
 }
 
 void loop(){
-  //3 by 2
-  lcd.setCursor(0, 0);
-  lcd.createChar(1, top1);
-  lcd.write(1);
-  
-  lcd.setCursor(1, 0);
-  lcd.createChar(2, top2);
-  lcd.write(1);
-  
-  lcd.setCursor(2, 0);
-  lcd.createChar(3, top3);
-  lcd.write(2);
-  
-  lcd.setCursor(0, 1);
-  lcd.createChar(4, bottom1);
-  lcd.write(8);
-  
-  lcd.setCursor(1, 1);
-  lcd.createChar(5, bottom2);
-  lcd.write(4);
-  
-  lcd.setCursor(2, 1);
-  lcd.createChar(6, bottom3);
-  lcd.write(5);
-
-  delay(1000);
+  //delay(1000);
 }
