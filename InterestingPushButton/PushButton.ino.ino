@@ -1,5 +1,7 @@
 // starter code for an interesting push button
 
+//something
+
 int pin1 = 10;
 int buttonPin = 0;
 int buttonState = 0;
