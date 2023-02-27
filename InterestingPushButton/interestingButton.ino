@@ -1,38 +1,78 @@
 #include <LiquidCrystal.h>
 
-LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+//black wire green led: 12
+//blue leds: 11, 10
+//whites: 9,8
+//orange: 7
+//green --> yellows: 5-2
+
+LiquidCrystal lcd(9, 8, 5, 4, 3, 2);
 
 int randomNum;
-long pauseTime;
-long startTime;
+double pauseTime;
+double startTime;
 
 int buttonState = 0;
-
 bool buttonPressed = false;
+bool gameStart = false;
 
 void setup(){
   lcd.begin(16, 2);
+  Serial.begin(9600);
   lcd.home();
   lcd.print("Hello World");
   delay(1000);
   lcd.clear();
-  
+  Serial.println("Start!");
 }
 
 void loop(){
-  lcd.setCursor(0, 0);
-  lcd.print("Get ready...");
-  randomNum = random(2000, 10000);
-  delay(randomNum);
-  lcd.clear();
-  lcd.setCursor(6, 0);
-  lcd.print("Go!");
-  startTime = millis();
-  buttonState = digitalRead(7);
-  if(buttonState == HIGH){
-    pauseTime = millis() - startTime;
+  runGame();
+  Serial.print("Time: ");
+  Serial.println(pauseTime);
+}
+
+void runGame(){
+  if(gameStart == false){
+    lcd.setCursor(0, 0);
+    lcd.print("Get ready...");
+    randomNum = random(2000, 10000);
+    delay(randomNum);
+    lcd.clear();
+    startTime = millis();
   }
   
-  delay(3000);
-  lcd.clear();
+  lcd.setCursor(6, 0);
+  lcd.print("Go!");
+  gameStart = true;
+  
+  if(gameStart == true){
+    
+    
+    buttonState = digitalRead(7);
+    
+    if(buttonState == HIGH && buttonPressed == false){
+      
+      pauseTime = millis() - startTime;
+      pauseTime = pauseTime / 1000;
+      
+      Serial.println(pauseTime);
+      lcd.setCursor(0, 1);
+      lcd.write("Pressed: ");
+      lcd.print(pauseTime);
+      
+      buttonPressed = true;
+      delay(1000);
+      gameStart = false;
+    }
+  }
+
+  if(gameStart == false){
+    lcd.home();
+    lcd.write("Game Over");
+    delay(3000);
+    pauseTime = 0.00;
+    //Serial.println("All done.");
+    lcd.clear();
+  }
 }
