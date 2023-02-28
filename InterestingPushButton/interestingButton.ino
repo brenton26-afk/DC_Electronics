@@ -12,6 +12,9 @@ int randomNum;
 double pauseTime;
 double startTime;
 
+int lightSwitch;
+int led;
+
 int buttonState = 0;
 bool buttonPressed = false;
 bool gameStart = false;
@@ -24,6 +27,10 @@ void setup(){
   delay(1000);
   lcd.clear();
   Serial.println("Start!");
+
+  pinMode(12, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(10, OUTPUT);
 }
 
 void loop(){
@@ -40,17 +47,19 @@ void runGame(){
     delay(randomNum);
     lcd.clear();
     startTime = millis();
+
+    lcd.setCursor(6, 0);
+    lcd.print("Go!");
+    gameStart = true;
   }
   
-  lcd.setCursor(6, 0);
-  lcd.print("Go!");
-  gameStart = true;
+  
   
   if(gameStart == true){
     
-    
     buttonState = digitalRead(7);
-    
+    buttonPressed = false;
+    //button
     if(buttonState == HIGH && buttonPressed == false){
       
       pauseTime = millis() - startTime;
@@ -63,11 +72,28 @@ void runGame(){
       
       buttonPressed = true;
       delay(1000);
+      
+      //turn on lights
+      if(pauseTime <= 0.35){
+        led = 12;
+      }else if(pauseTime > 0.35 && pauseTime <= 0.7){
+        led = 11;
+      } else if(pauseTime > 0.7){
+        led = 10;
+      }
+      
+      lightSwitch = 1;
+      light(lightSwitch, led);
+      //digitalWrite(12, HIGH);
+      
+      delay(1000);
       gameStart = false;
     }
   }
 
   if(gameStart == false){
+    lightSwitch = 0;
+    light(lightSwitch, led);
     lcd.home();
     lcd.write("Game Over");
     delay(3000);
@@ -75,4 +101,9 @@ void runGame(){
     //Serial.println("All done.");
     lcd.clear();
   }
+}
+
+
+void light(int li, int pin){
+  digitalWrite(pin, li);
 }
