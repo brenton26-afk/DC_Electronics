@@ -41,16 +41,31 @@ void loop(){
 
 void runGame(){
   if(gameStart == false){
+    
+    
     lcd.setCursor(0, 0);
     lcd.print("Get ready...");
+    
+    
     randomNum = random(2000, 10000);
-    delay(randomNum);
+
+    for(int i = 0; i < randomNum; i++){
+      delay(1);
+      buttonState = digitalRead(7);
+    }
+    //delay(randomNum);
+    if(buttonState == HIGH){
+        gameStart = false;
+        buttonPressed = true;
+      }else{
+    
     lcd.clear();
     startTime = millis();
 
     lcd.setCursor(6, 0);
     lcd.print("Go!");
     gameStart = true;
+      }
   }
   
   
@@ -74,11 +89,11 @@ void runGame(){
       delay(1000);
       
       //turn on lights
-      if(pauseTime <= 0.35){
+      if(pauseTime <= 0.19){
         led = 12;
-      }else if(pauseTime > 0.35 && pauseTime <= 0.7){
+      }else if(pauseTime > 0.19 && pauseTime <= 0.4){
         led = 11;
-      } else if(pauseTime > 0.7){
+      } else if(pauseTime > 0.4){
         led = 10;
       }
       
