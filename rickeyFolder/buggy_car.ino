@@ -10,20 +10,20 @@ int distance;
 
 void setup() {
   // put your setup code here, to run once:
-pinMode(trigPin, OUTPUT);
-pinMode(echoPin, INPUT);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
  
- Serial.begin(9600);
+  Serial.begin(9600);
 }
 
 void loop() {
-pinMode(directionPin, OUTPUT);
+  pinMode(directionPin, OUTPUT);
 
-//forward(5000);
-//backwards(5000);
+//   forward(5000);
+//   backwards(5000);
 
-//ultrasonic code
- digitalWrite(trigPin, LOW);
+// ultrasonic code
+  digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
   
   digitalWrite(trigPin, HIGH);
@@ -50,9 +50,8 @@ pinMode(directionPin, OUTPUT);
 
 void forward(int t){
   analogWrite(speedPin, 255);
-  // put your main code here, to run repeatedly:
-digitalWrite(directionPin, HIGH);
-delay(t);
+  digitalWrite(directionPin, HIGH);
+  delay(t);
 }
 
 void backwards(int t){
