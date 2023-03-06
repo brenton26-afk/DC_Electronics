@@ -1,9 +1,14 @@
 //rickey code
+
+// green 9
+// white 6 (trig pin)
+// other green 5 (echo pin)
+
 int directionPin = 2;
 int speedPin = 3;
 
-int trigPin = 5;
-int echoPin = 4;
+int trigPin = 6;
+int echoPin = 5;
 
 long duration;
 int distance;
@@ -19,8 +24,8 @@ void setup() {
 void loop() {
   pinMode(directionPin, OUTPUT);
 
-//   forward(5000);
-//   backwards(5000);
+//  forward(5000);
+//  backwards(5000);
 
 // ultrasonic code
   digitalWrite(trigPin, LOW);
@@ -29,21 +34,25 @@ void loop() {
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
- 
+
+ // inspect pluseIn 
+ //could be source of problem
   duration = pulseIn(echoPin, HIGH);
  
-  distance = duration * 0.034 / 2;
+  // distance = duration * 0.034 / 2;
+  distance = duration;
 
-  int sensorValue = map(distance, 0, 1000, 0, 100);
+  int sensorValue = map(distance, 0, 15000, 0, 500);
   //int sensorValue = distance;
   //Serial.print("Light: ");
   Serial.println(sensorValue);
+ // Serial.println(distance);
 
 
-  if(sensorValue >= 800){
-    //forward(5);
-  }else if(sensorValue < 800){
-   //backwards(5);
+  if(sensorValue >= 100){
+    forward(5);
+  }else if(sensorValue < 100){
+    backwards(5);
   }
 
 }
