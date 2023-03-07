@@ -4,6 +4,8 @@
 // white 6 (trig pin)
 // other green 5 (echo pin)
 
+//leds should be pin 12 and 13
+
 int directionPin = 2;
 int speedPin = 3;
 
@@ -17,15 +19,18 @@ void setup() {
   // put your setup code here, to run once:
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
- 
-  Serial.begin(9600);
+   pinMode(directionPin, OUTPUT);
+
+   pinMode(12, OUTPUT);
+   pinMode(13, OUTPUT);
+
+ // Serial.begin(9600);
 }
 
 void loop() {
-  pinMode(directionPin, OUTPUT);
 
-//  forward(5000);
-//  backwards(5000);
+//  forward(1000);
+//  backwards(1000);
 
 // ultrasonic code
   digitalWrite(trigPin, LOW);
@@ -45,14 +50,23 @@ void loop() {
   int sensorValue = map(distance, 0, 15000, 0, 500);
   //int sensorValue = distance;
   //Serial.print("Light: ");
-  Serial.println(sensorValue);
+  
  // Serial.println(distance);
 
-
-  if(sensorValue >= 100){
-    forward(5);
-  }else if(sensorValue < 100){
-    backwards(5);
+  digitalWrite(12, LOW);
+  digitalWrite(13, LOW);
+  
+  if(sensorValue > 50){
+    //forward(500);
+    digitalWrite(12, HIGH);     //green LED
+    delay(1000);
+   // Serial.print("Forward: ");
+   // Serial.println(sensorValue);
+  }else if(sensorValue < 50){
+    //backwards(500);
+    digitalWrite(13, HIGH);    //red LED
+  //  Serial.print("Backwards: ");
+   // Serial.println(sensorValue);
   }
 
 }
