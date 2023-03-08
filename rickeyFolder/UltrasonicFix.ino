@@ -1,3 +1,4 @@
+//Brenton made this code
 //when the arduino is unplugged from the computer it should run independently
 let red = 8;		// red LED
 let green = 11;		// green LED
