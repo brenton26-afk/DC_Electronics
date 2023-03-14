@@ -1,6 +1,3 @@
-// rickey code
-
-
 // left wheels
 int leftD = 4;
 int leftSpeed = 5;
@@ -9,7 +6,7 @@ int leftSpeed = 5;
 int rightD = 2;
 int rightSpeed = 6;
 
-int pwr = HIGH;     // power to the wheels 
+int pwr = 10;     // power to the wheels 
 
 // ultrasonic sensor
 int trigPin = 12;
@@ -74,6 +71,7 @@ void forward(){
   digitalWrite(leftSpeed, HIGH);
   digitalWrite(rightD, HIGH);
   digitalWrite(leftD, HIGH);
+  delay(50);
 }
 
 void backward(){
@@ -81,4 +79,10 @@ void backward(){
   digitalWrite(leftSpeed, HIGH);
   digitalWrite(rightD, LOW);
   digitalWrite(leftD, LOW);
+  delay(50);
+}
+
+void turn(){
+  digitalWrite(rightSpeed, HIGH);
+  digitalWrite(leftSpeed, HIGH);
 }
